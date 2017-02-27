@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import setDefaultGrid from '../actions/set-default-grid'
+import changeColor from '../actions/change-color'
 import Cell from './Cell'
 
 class Grid extends Component {
@@ -32,13 +33,15 @@ class Grid extends Component {
 
   handleClick(x, y, color) {
     let myCoordinates = { x, y }
-    let ticks = 5;
-    let rings = [];
+    let ticks = 4
+    let rings = []
 
     for(var steps=0; steps < ticks; steps++) {
-      rings.push(this.getSurroundings(x, y, steps + 1))
+      let currentRing = this.getSurroundings(x, y, steps + 1)
+      rings.push(currentRing)
+      this.props.changeColor(currentRing, color)
     }
-    console.log(rings)
+
   }
 
   renderGrid() {
@@ -57,9 +60,8 @@ class Grid extends Component {
   }
 }
 
-
 function mapStateToProps({ grid }) {
   return { grid }
 }
 
-export default connect(mapStateToProps, { setDefaultGrid })(Grid)
+export default connect(mapStateToProps, { setDefaultGrid, changeColor })(Grid)
