@@ -13,13 +13,12 @@ class Grid extends Component {
       }
     }
     return cells.map((cell, i) => {
-      return <Cell key= { i } size={ cell.size } x={ cell.x * cell.size } y={ cell.y * cell.size } />
+      return <Cell
+        key= { i } size={ cell.size } x={ cell.x * cell.size } y={ cell.y * cell.size } />
     })
   }
 
   render() {
-    // const { rows, cols } = this.props
-
     return (
       <div>
         { this.renderGrid() }
