@@ -1,32 +1,19 @@
 import React, { Component } from 'react'
 
-class Cell extends Component {
-  getRandomColor() {
-    // avoiding extreme colors 
-    var letters = '789ABCD'
-    var color = '#'
-    for (var i = 0; i < 6; i++ ) {
-      color += letters[Math.floor(Math.random() * 6)]    }
-    return color
-  }
-
-  render() {
-    const { size, x, y } = this.props
-    let color = this.getRandomColor()
+const Cell = (props) => {
     let cellStyles = {
-      background: color,
+      background: props.color,
       border: "1px solid black",
       position: "absolute",
-      left: x + "px",
-      top: y + "px",
-      height: size + "px",
-      width: size + "px"
+      left: props.x * props.size + "px",
+      top: props.y * props.size + "px",
+      height: props.size + "px",
+      width: props.size + "px"
     }
 
     return(
-      <span style={ cellStyles } />
+      <span style={ cellStyles }>{ props.x }, { props.y }</span>
     )
   }
-}
 
 export default Cell

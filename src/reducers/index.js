@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux'
+import GridReducer from './reducer_grid'
 
 const rootReducer = combineReducers({
-  state: (state = {}) => state
+  grid: GridReducer,
 })
 
 export default rootReducer

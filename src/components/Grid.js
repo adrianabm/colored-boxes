@@ -1,24 +1,21 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import setDefaultGrid from '../actions/set-default-grid'
 import Cell from './Cell'
 
 class Grid extends Component {
-  renderGrid() {
-    let rows = 20
-    let cols = 20
-    let cells = []
+  componentWillMount() {
+    { this.props.setDefaultGrid() }
+  }
 
-    for (var r = 0; r < rows; r++) {
-      for (var c = 0; c < cols; c++) {
-        cells.push({ size: 32 , x: r , y: c })
-      }
-    }
-    return cells.map((cell, i) => {
-      return <Cell
-        key= { i } size={ cell.size } x={ cell.x * cell.size } y={ cell.y * cell.size } />
+  renderGrid() {
+    return this.props.grid.cells.map((cell, i) => {
+      return <Cell { ...cell } key={ i }/>
     })
   }
 
   render() {
+    const { cells, cols, rows, color } = this.props.grid
     return (
       <div>
         { this.renderGrid() }
@@ -27,4 +24,9 @@ class Grid extends Component {
   }
 }
 
-export default Grid
+
+function mapStateToProps({ grid }) {
+  return { grid }
+}
+
+export default connect(mapStateToProps, { setDefaultGrid })(Grid)
