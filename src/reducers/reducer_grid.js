@@ -11,7 +11,7 @@ export default function(state = defaultState, action ) {
     case SET_DEFAULT_GRID:
       let cells = createGridArray(state.rows, state.cols)
       return Object.assign({}, state,
-        { cells: cells }
+        { cells }
       )
   }
   return state
