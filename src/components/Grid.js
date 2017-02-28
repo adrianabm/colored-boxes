@@ -35,13 +35,16 @@ class Grid extends Component {
     let myCoordinates = { x, y }
     let ticks = 4
     let rings = []
+    let clickedColor = { color }
 
     for(var steps=0; steps < ticks; steps++) {
       let currentRing = this.getSurroundings(x, y, steps + 1)
       rings.push(currentRing)
-      this.props.changeColor(currentRing, color)
+      // this.props.setTimeout(function(){
+      //   console.log('hi')
+      // }, 1000 * steps)
+      this.props.changeColor(currentRing, color, clickedColor)
     }
-
   }
 
   renderGrid() {
