@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
 class Cell extends Component {
-
-
   handleClick() {
     const { x, y, color } = this.props
     this.props.handleClick(x, y, color)
@@ -19,7 +17,6 @@ class Cell extends Component {
       height: size + "px",
       width: size + "px"
     }
-
     return(
       <span style={ cellStyles } onClick= { this.handleClick.bind(this) } />
     )

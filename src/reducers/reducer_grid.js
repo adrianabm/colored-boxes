@@ -19,7 +19,7 @@ export default function(state = defaultState, action ) {
       let newCells = state.cells.map((cell, index) => {
         for (var i = 0; i < action.ring.length; i++) {
           if (cell.x === action.ring[i].x && cell.y === action.ring[i].y) {
-            let newColor = getHueColor(action.ring.length, action.clickedColor.color)
+            let newColor = getNewColor(action.ring.length, action.clickedColor.color)
             cell = Object.assign(
               {}, cell, { color: newColor }
             )
@@ -34,18 +34,7 @@ export default function(state = defaultState, action ) {
   return state
 }
 
-// export const getRandomColor = () => {
-//   avoiding extreme colors
-//   var letters = '789ABCD'
-//   var color = '#'
-//   for (var i = 0; i < 6; i++ ) {
-//     color += letters[Math.floor(Math.random() * 6)]
-//   }
-//   return color
-// }
-
-export const getHueColor = (ring, clickedColor) => {
-  console.log(ring)
+export const getNewColor = (ring, clickedColor) => {
   let newColor = Object.assign(
     {}, clickedColor, { l: clickedColor.l + 1.5 * ring }
   )
@@ -60,8 +49,7 @@ export const getRandomColor = () => {
   var h = rand(1, 360) // color hue between 1 and 360
   var s = rand(30, 100) // saturation 30-100%
   var l = rand(30, 70) // lightness 30-70%
-  var color = { h, s, l}
-  // 'hsl(' + h + ',' + s + '%,' + l + '%)'
+  var color = { h, s, l} // save color as an object so it's easier to make the saturation effect later
   return color
 }
 
@@ -69,7 +57,7 @@ export const createGridArray = (rows, cols) => {
   let cells = []
   for (var r = 0; r < rows; r++) {
     for (var c = 0; c < cols; c++) {
-      cells.push({ size: 25 , x: r , y: c, color: getRandomColor() })
+      cells.push({ size: 25 , x: r , y: c, color: getRandomColor() }) // each cell will have a RandomColor assigned
     }
   }
   return cells
