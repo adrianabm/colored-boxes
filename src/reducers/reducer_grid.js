@@ -42,14 +42,16 @@ export const getNewColor = (ring, clickedColor) => {
 }
 
 export const rand = (min, max) => {
-  return parseInt(Math.random() * (max-min+1), 10) + min
+  return parseInt(Math.random() * (max-min + 1), 10) + min
 }
 
 export const getRandomColor = () => {
+  // creating HSL color values instead of HEX and saving it as object
+  // makes it easier to add a saturation effect later
   var h = rand(1, 360) // color hue between 1 and 360
   var s = rand(30, 100) // saturation 30-100%
   var l = rand(30, 70) // lightness 30-70%
-  var color = { h, s, l} // save color as an object so it's easier to make the saturation effect later
+  var color = { h, s, l}
   return color
 }
 
