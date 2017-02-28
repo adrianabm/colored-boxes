@@ -19,7 +19,7 @@ export default function(state = defaultState, action ) {
       let newCells = state.cells.map((cell, index) => {
         for (var i = 0; i < action.ring.length; i++) {
           if (cell.x === action.ring[i].x && cell.y === action.ring[i].y) {
-            let newColor = getHueColor(cell.color, action.clickedColor.color)
+            let newColor = getHueColor(action.ring.length, action.clickedColor.color)
             cell = Object.assign(
               {}, cell, { color: newColor }
             )
@@ -44,8 +44,11 @@ export default function(state = defaultState, action ) {
 //   return color
 // }
 
-export const getHueColor = (oldColor, clickedColor) => {
-  let newColor = clickedColor
+export const getHueColor = (ring, clickedColor) => {
+  console.log(ring)
+  let newColor = Object.assign(
+    {}, clickedColor, { l: clickedColor.l + 1.5 * ring }
+  )
   return newColor
 }
 
@@ -57,7 +60,8 @@ export const getRandomColor = () => {
   var h = rand(1, 360) // color hue between 1 and 360
   var s = rand(30, 100) // saturation 30-100%
   var l = rand(30, 70) // lightness 30-70%
-  var color = 'hsl(' + h + ',' + s + '%,' + l + '%)'
+  var color = { h, s, l}
+  // 'hsl(' + h + ',' + s + '%,' + l + '%)'
   return color
 }
 

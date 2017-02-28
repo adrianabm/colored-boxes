@@ -11,7 +11,7 @@ class Cell extends Component {
   render() {
     const { color, x, y, size } = this.props
     let cellStyles = {
-      background: color,
+      background: 'hsl(' + color.h + ',' + color.s + '%,' + color.l + '%)',
       border: "1px solid black",
       position: "absolute",
       left: x * size + "px",
