@@ -3,8 +3,8 @@ import { CHANGE_COLOR } from '../actions/change-color'
 
 const defaultState = {
   cells: [],
-  rows: 10,
-  cols: 10
+  rows: 20,
+  cols: 20
 }
 
 export default function(state = defaultState, action ) {
@@ -19,7 +19,7 @@ export default function(state = defaultState, action ) {
       let newCells = state.cells.map((cell, index) => {
         for (var i = 0; i < action.ring.length; i++) {
           if (cell.x === action.ring[i].x && cell.y === action.ring[i].y) {
-            let newColor = getHueColor(cell.color, action.clickedColor)
+            let newColor = getHueColor(cell.color, action.clickedColor.color)
             cell = Object.assign(
               {}, cell, { color: newColor }
             )
@@ -44,9 +44,8 @@ export default function(state = defaultState, action ) {
 //   return color
 // }
 
-export const getHueColor = (color, clickedColor) => {
-  let newColor = clickedColor.color
-  console.log(newColor)
+export const getHueColor = (oldColor, clickedColor) => {
+  let newColor = clickedColor
   return newColor
 }
 
@@ -66,7 +65,7 @@ export const createGridArray = (rows, cols) => {
   let cells = []
   for (var r = 0; r < rows; r++) {
     for (var c = 0; c < cols; c++) {
-      cells.push({ size: 50 , x: r , y: c, color: getRandomColor() })
+      cells.push({ size: 25 , x: r , y: c, color: getRandomColor() })
     }
   }
   return cells

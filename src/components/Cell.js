@@ -21,7 +21,7 @@ class Cell extends Component {
     }
 
     return(
-      <span style={ cellStyles } onClick= { this.handleClick.bind(this) }>{ x }, { y }</span>
+      <span style={ cellStyles } onClick= { this.handleClick.bind(this) } />
     )
   }
 }

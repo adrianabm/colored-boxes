@@ -1,0 +1,13 @@
+.grid {
+  cursor: pointer;
+  margin: auto;
+  position: absolute;
+
+  bottom: 0px;
+  left: 0;
+  right: 0px;
+  top: 0;
+
+  height: 500px;
+  width: 500px;
+}
