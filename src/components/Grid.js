@@ -5,7 +5,12 @@ import changeColor from '../actions/change-color'
 import Cell from './Cell'
 
 class Grid extends Component {
-  componentWillMount() {
+  constructor() {
+    super()
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  componentDidMount() {
     { this.props.setDefaultGrid() }
   }
 
@@ -54,7 +59,7 @@ class Grid extends Component {
 
   renderGrid() {
     return this.props.grid.cells.map((cell, i) => {
-      return <Cell { ...cell } key={ i } handleClick={ this.handleClick.bind(this) } />
+      return <Cell { ...cell } key={ i } handleClick={ this.handleClick } />
     })
   }
 
